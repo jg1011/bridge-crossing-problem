@@ -18,9 +18,9 @@ Pairing up the two slowest people to cross seems to always be optimal, which mak
 
 Intuitively, I'd guess the optimal sequence of moves looks like 
 
-- $(\{1,2\}, \{1\})$
+- $(\{1, 2\}, \{1\})$
 - $(\{N, N-1\}, \{2\})$ 
-- $(\{1,2\}, \{1\})$
+- $(\{1, 2\}, \{1\})$
 - $(\{N-2, N-3\}, \{2\})$
 
 $\qquad \vdots \qquad \vdots \qquad \vdots$ 
