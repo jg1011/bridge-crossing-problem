@@ -1,30 +1,33 @@
-# Problem Statement: 
+# The Old Bridge At Night Problem
 
-Suppose $N$ people cross an old bridge at night. Due to the bridge's age, at most two people can cross at one time. 
-Due to the darkness, a torch is required to cross the bridge. There is only one torch to be shared among the $N$ people, and to stay in lit conditions each pair that crosses must walk at the speed of the slower person in said pair. Suppose person $1 \leq i \leq N$ takes $2^i$ minutes to cross. 
+In this repo we are concerned with a classical logical puzzle that falls under the umbrella of discrete optimisation. 
 
-- What is the fastest time the $N$ people can cross the bridge?
+## Problem statement: 
 
-# Repo Outline 
+Suppose there are $n \geq 1$ people wanting to cross a bridge. The group share one torch between them and it is dark, so a torch is required to cross the bridge. The bridge is old, so at most two people may be on the bridge at any given moment. Person $1 \leq i \leq n$ takes $\omega_i > 0$ minutes to cross the bridge. What is the fastest the entire group can make it to the other side of the bridge? 
 
-This repo is simply an investigation, I am yet to solve this problem. The cases I have solved are $\dots$
+Combinatorial questions such as "how strategies take between $a$ and $b$ minutes to complete" will also be of interest. 
 
-- $N = 3$ : $14$
-- $N = 4$ : $30$
-- $N = 5$ : $56$
-- $N = 6$ : $104$ (could be $102$, LB of $100$ shown to be impossible and $104$ solution found)
+## Solutions for small groups
 
-Pairing up the two slowest people to cross seems to always be optimal, which makes sense intuitively. I have not yet found a nice way to argue this fact. No recursions are jumping out at me either :(
+If $n \leq 2$ the problem is trivial. If $n = 3$ the problem is still trivial. WLOG assume $\omega_1 \leq \omega_2 \leq \omega_3$, 
+then it is best to send person $1$ and $2$ together first, have person $1$ return with the torch, and then to send 
+$(1,3)$ across, taking a total time of $omega_1 + \omega_2 + \omega_3$. We could equivalently have sent $1$ and $3$ together first, having $1$ return then sending $1$ and $2$ across. 
 
-Intuitively, I'd guess the optimal sequence of moves looks like 
+If $n=4$, more work is already required. One strategy is the "escort strategy", a simple greedy approach. 
 
-- $(\{1, 2\}, \{1\})$
-- $(\{N, N-1\}, \{2\})$ 
-- $(\{1, 2\}, \{1\})$
-- $(\{N-2, N-3\}, \{2\})$
+-> send (1,2) 
+-> return (1)
+-> send (1,3) 
+-> return (1)
+-> send (1,4)
 
-$\qquad \vdots \qquad \vdots \qquad \vdots$ 
+This gives a total time of $2\omega_1 + \omega_2 + \omega_3 + \omega_4$. Seems logical, but what if $\omega_3 > \! \! > \omega_1, \omega_2$? We may gain significantly by pairing up $(3,4)$ and sacrificing some time on the returns. We call this strategy the "escort strategy". 
 
-- $(\{1,2\}, \emptyset)$
+-> send (1,2)
+-> return (1)
+-> send (3,4)
+-> return (2)
+-> send (1,2)
 
-Pls prove. 
+This gives a total time $\omega_1 + 3\omega_2 + \omega_4$. Hence, the pair strategy outperforms the escort strategy when $\omega_3 > 2\omega_2 - \omega_1$. One can then verify that these two strategies form the optimal solution when $n=4$. 
