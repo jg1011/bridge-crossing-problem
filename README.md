@@ -31,3 +31,9 @@ This gives a total time of $2\omega_1 + \omega_2 + \omega_3 + \omega_4$. Seems l
 -> send (1,2)
 
 This gives a total time $\omega_1 + 3\omega_2 + \omega_4$. Hence, the pair strategy outperforms the escort strategy when $\omega_3 > 2\omega_2 - \omega_1$. One can then verify that these two strategies form the optimal solution when $n=4$. 
+
+## Future work
+
+1. Shortest path solution & constraint programming solutions
+2. Combinatorial analysis (e.g. counting solutions)
+3. Generalised variants (e.g. $k < n$ flashlights, allowing movement in $\ell < n$ pairs)
